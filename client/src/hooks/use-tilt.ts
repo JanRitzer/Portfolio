@@ -14,6 +14,10 @@ interface UseTiltOptions {
 let sharedGyroPermission: "granted" | "denied" | "prompt" = "prompt";
 const GYRO_EVENT = "gyro-permission-changed";
 
+// Shared baseline orientation — captured from the first readings after permission is granted
+let baselineBeta: number | null = null;
+let baselineGamma: number | null = null;
+
 /** Call this after DeviceOrientationEvent.requestPermission() resolves */
 export function notifyGyroPermission(result: "granted" | "denied") {
   sharedGyroPermission = result;
@@ -55,9 +59,19 @@ export function useTilt({ maxDeg = 15, perspective = 600 }: UseTiltOptions = {})
       const beta = e.beta ?? 0;   // front-back tilt (-180 to 180)
       const gamma = e.gamma ?? 0; // left-right tilt (-90 to 90)
 
-      // Normalize: assume phone held upright (~45deg beta as neutral)
-      const normalizedX = Math.max(-maxDeg, Math.min(maxDeg, (beta - 45) * 0.3));
-      const normalizedY = Math.max(-maxDeg, Math.min(maxDeg, gamma * 0.3));
+      // Capture baseline from the user's natural holding position
+      if (baselineBeta === null || baselineGamma === null) {
+        baselineBeta = beta;
+        baselineGamma = gamma;
+        return;
+      }
+
+      // Tilt = deviation from baseline
+      const deltaBeta = beta - baselineBeta;
+      const deltaGamma = gamma - baselineGamma;
+
+      const normalizedX = Math.max(-maxDeg, Math.min(maxDeg, deltaBeta * 0.8));
+      const normalizedY = Math.max(-maxDeg, Math.min(maxDeg, deltaGamma * 0.8));
 
       setTilt({ x: -normalizedX, y: normalizedY });
     };
