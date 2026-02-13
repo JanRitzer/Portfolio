@@ -1,10 +1,10 @@
-import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { Github, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import type { Project } from "@/constants";
+import { useTilt } from "@/hooks/use-tilt";
 
 interface ProjectCardProps {
   project: Project;
@@ -12,25 +12,7 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project, index }: ProjectCardProps) {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    setTilt({
-      x: ((y - centerY) / centerY) * -15,
-      y: ((x - centerX) / centerX) * 15,
-    });
-  };
-
-  const handleMouseLeave = () => {
-    setTilt({ x: 0, y: 0 });
-  };
+  const { ref, style, handleMouseMove, handleMouseLeave } = useTilt();
 
   return (
     <motion.div
@@ -40,13 +22,10 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
       viewport={{ once: true, margin: "-50px" }}
     >
       <div
-        ref={cardRef}
+        ref={ref}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        style={{
-          transform: `perspective(600px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
-          transition: "transform 0.15s ease-out",
-        }}
+        style={style}
         data-testid={`card-project-${project.id}`}
       >
         <Card

@@ -1,15 +1,14 @@
-import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { Code2, Palette, Zap, Users } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { useLanguage } from "@/hooks/use-language";
+import { useTilt } from "@/hooks/use-tilt";
 import profileImage from "@assets/IMG_4617_1765566574844.jpg";
 import tumLogo from "@assets/tum-logo.svg";
 
 export function About() {
   const { t } = useLanguage();
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const { ref, style, handleMouseMove, handleMouseLeave } = useTilt();
 
   const skills = [
     { icon: Code2, label: t("about.skill.cleanCode"), description: t("about.skill.cleanCodeDesc") },
@@ -23,23 +22,6 @@ export function About() {
     { value: "20+", label: t("about.projectsCompleted") },
     { value: "15+", label: t("about.technologies") },
   ];
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    setTilt({
-      x: ((y - centerY) / centerY) * -15,
-      y: ((x - centerX) / centerX) * 15,
-    });
-  };
-
-  const handleMouseLeave = () => {
-    setTilt({ x: 0, y: 0 });
-  };
 
   return (
     <section id="about" className="py-24 relative">
@@ -109,14 +91,11 @@ export function About() {
             viewport={{ once: true }}
             className="relative"
           >
-            <div 
-              ref={cardRef}
+            <div
+              ref={ref}
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
-              style={{
-                transform: `perspective(600px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
-                transition: "transform 0.15s ease-out",
-              }}
+              style={style}
               className="relative"
             >
               <div className="aspect-square max-w-md mx-auto rounded-md overflow-hidden bg-gradient-to-br from-primary/20 to-accent/20 p-1">

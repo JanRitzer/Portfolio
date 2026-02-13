@@ -1,16 +1,15 @@
-import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { experiences, type Experience as ExperienceType } from "@/constants";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Briefcase, MapPin, Calendar } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
+import { useTilt } from "@/hooks/use-tilt";
 
 function ExperienceCard({ experience, index }: { experience: ExperienceType; index: number }) {
   const { t, language } = useLanguage();
   const isLeft = index % 2 === 0;
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const { ref, style, handleMouseMove, handleMouseLeave } = useTilt();
 
   const formatDate = (dateStr: string): string => {
     const date = new Date(dateStr);
@@ -68,23 +67,6 @@ function ExperienceCard({ experience, index }: { experience: ExperienceType; ind
     return experience.location;
   };
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    setTilt({
-      x: ((y - centerY) / centerY) * -15,
-      y: ((x - centerX) / centerX) * 15,
-    });
-  };
-
-  const handleMouseLeave = () => {
-    setTilt({ x: 0, y: 0 });
-  };
-
   return (
     <motion.div
       initial={{ opacity: 0, x: isLeft ? -30 : 30 }}
@@ -94,7 +76,7 @@ function ExperienceCard({ experience, index }: { experience: ExperienceType; ind
       className={`flex items-center gap-4 ${isLeft ? "md:flex-row" : "md:flex-row-reverse"}`}
     >
       <div className="hidden md:block flex-1" />
-      
+
       <div className="relative z-10">
         {experience.logo ? (
           <div className="w-14 h-14 rounded-full bg-background border-2 border-primary/50 flex items-center justify-center overflow-hidden shadow-lg shadow-primary/10">
@@ -110,16 +92,13 @@ function ExperienceCard({ experience, index }: { experience: ExperienceType; ind
           </div>
         )}
       </div>
-      
+
       <div className="flex-1">
         <div
-          ref={cardRef}
+          ref={ref}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
-          style={{
-            transform: `perspective(600px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
-            transition: "transform 0.15s ease-out",
-          }}
+          style={style}
           data-testid={`card-experience-${experience.id}`}
         >
         <Card
