@@ -61,7 +61,7 @@ export const projects: Project[] = [
   },
   {
     id: "5",
-    title: "Portfolio",
+    title: "This Portfolio",
     description: "My personal developer portfolio featuring a modern dark UI with 3D tilt effects, gyroscope-based mobile interactions, bilingual support (EN/DE), and smooth scroll animations. Built as a single-page app deployed on Vercel with a serverless contact form powered by Resend.",
     thumbnail: portfolioThumbnail,
     techStack: ["React", "TypeScript", "Tailwind CSS", "Framer Motion", "Vercel"],
