@@ -96,7 +96,19 @@ function ExperienceCard({ experience, index }: { experience: ExperienceType; ind
       <div className="hidden md:block flex-1" />
       
       <div className="relative z-10">
-        <div className="w-4 h-4 rounded-full bg-primary border-4 border-background" />
+        {experience.logo ? (
+          <div className="w-10 h-10 rounded-full bg-background border-2 border-primary/50 flex items-center justify-center overflow-hidden shadow-lg shadow-primary/10">
+            <img
+              src={experience.logo}
+              alt={`${experience.company} logo`}
+              className="w-6 h-6 object-contain"
+            />
+          </div>
+        ) : (
+          <div className="w-10 h-10 rounded-full bg-background border-2 border-primary/50 flex items-center justify-center shadow-lg shadow-primary/10">
+            <Briefcase className="w-4 h-4 text-primary" />
+          </div>
+        )}
       </div>
       
       <div className="flex-1">
@@ -114,24 +126,13 @@ function ExperienceCard({ experience, index }: { experience: ExperienceType; ind
           className="p-6 bg-card/50 backdrop-blur-sm border-border/50 hover:border-primary/30 transition-colors"
         >
           <div className="flex flex-wrap items-start justify-between gap-2 mb-3">
-            <div className="flex items-center gap-3">
-              {experience.logo && (
-                <div className="w-10 h-10 rounded-md bg-white/10 backdrop-blur-sm border border-border/30 flex items-center justify-center shrink-0 overflow-hidden">
-                  <img
-                    src={experience.logo}
-                    alt={`${experience.company} logo`}
-                    className="w-7 h-7 object-contain"
-                  />
-                </div>
-              )}
-              <div>
-                <h3 className="text-lg font-bold" data-testid={`text-title-${experience.id}`}>
-                  {getTranslatedTitle()}
-                </h3>
-                <div className="flex items-center gap-2 text-primary">
-                  <Briefcase className="w-4 h-4" />
-                  <span className="font-medium">{getTranslatedCompany()}</span>
-                </div>
+            <div>
+              <h3 className="text-lg font-bold" data-testid={`text-title-${experience.id}`}>
+                {getTranslatedTitle()}
+              </h3>
+              <div className="flex items-center gap-2 text-primary">
+                <Briefcase className="w-4 h-4" />
+                <span className="font-medium">{getTranslatedCompany()}</span>
               </div>
             </div>
             <Badge variant="outline" className="text-xs shrink-0">
@@ -208,7 +209,7 @@ export function Experience() {
         </motion.div>
 
         <div className="relative">
-          <div className="absolute left-[7px] md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-accent to-primary/20" />
+          <div className="absolute left-[19px] md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-accent to-primary/20" />
           
           <div className="space-y-8">
             {experiences.map((experience, index) => (
