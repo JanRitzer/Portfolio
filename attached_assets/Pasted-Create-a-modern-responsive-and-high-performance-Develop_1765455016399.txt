@@ -1,0 +1,58 @@
+Create a modern, responsive, and high-performance Developer Portfolio website using React, Vite, and Tailwind CSS.
+
+The design should be "Dark Mode," minimalist, and futuristic (Glassmorphism style).
+
+Please implement the following structure and features:
+
+1. **Tech Stack & Setup:**
+   - Initialize with React and Vite.
+   - Install 'tailwindcss' for styling.
+   - Install 'framer-motion' for smooth entrance animations and hover effects.
+   - Install 'lucide-react' for icons.
+   - Use standard HTML5 video tags or a lightweight video player component.
+
+2. **Components & Layout:**
+
+   A. **Navbar:**
+      - Fixed at the top with a blur/glass effect (`backdrop-blur`).
+      - Links: Home, Projects, About, Contact.
+      - A CTA button for "Download CV".
+
+   B. **Hero Section:**
+      - Large, bold typography introducing me as a developer.
+      - Two buttons: "View Work" and "Watch Intro".
+      - The "Watch Intro" button should open a video modal (overlay) playing a placeholder video.
+
+   C. **Tech Stack Marquee:**
+      - An auto-scrolling horizontal band displaying icons of technologies (React, Swift, Python, Node.js, etc.).
+
+   D. **Projects Showcase (Critical Feature):**
+      - A responsive grid layout for project cards.
+      - Each card must feature:
+        - A high-quality thumbnail image.
+        - Title and short description.
+        - Tech stack tags (e.g., #SwiftUI, #AI).
+        - A "Watch Demo" button: Clicking this opens a modal to play a video of the specific project (crucial for showing app demos).
+        - A "GitHub/Code" button.
+
+   E. **About Section:**
+      - Clean layout with text on one side and a placeholder for a profile picture on the other.
+
+   F. **Footer:**
+      - Social links (LinkedIn, GitHub) and copyright info.
+
+3. **Data Handling:**
+   - **Important:** Create a separate file (e.g., `constants/index.js` or `data.js`) to store all project data (titles, descriptions, video URLs, image URLs).
+   - This will allow me to easily add my "No Waste" app and other projects later without editing the HTML structure.
+
+4. **Styling & Animation:**
+   - Background: Deep dark gray/black (e.g., #0a0a0a).
+   - Text: White/Light Gray.
+   - Accent Color: Electric Blue or Purple.
+   - Apply `framer-motion` to elements so they fade in up as the user scrolls.
+   - Add hover effects to project cards (slight scale up and shadow).
+
+5. **Deployment Configuration:**
+   - Ensure the Vite config exposes the server to the host (`0.0.0.0`) so it is accessible via the Replit preview URL.
+
+Generate all necessary files, install dependencies, and run the development server.
