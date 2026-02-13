@@ -23,8 +23,8 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
     setTilt({
-      x: ((y - centerY) / centerY) * -8,
-      y: ((x - centerX) / centerX) * 8,
+      x: ((y - centerY) / centerY) * -15,
+      y: ((x - centerX) / centerX) * 15,
     });
   };
 
@@ -44,7 +44,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         style={{
-          transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
+          transform: `perspective(600px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
           transition: "transform 0.15s ease-out",
         }}
         data-testid={`card-project-${project.id}`}
