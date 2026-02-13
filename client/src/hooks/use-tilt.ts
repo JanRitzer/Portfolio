@@ -14,10 +14,6 @@ interface UseTiltOptions {
 let sharedGyroPermission: "granted" | "denied" | "prompt" = "prompt";
 const GYRO_EVENT = "gyro-permission-changed";
 
-// Shared baseline orientation — captured from the first readings after permission is granted
-let baselineBeta: number | null = null;
-let baselineGamma: number | null = null;
-
 /** Call this after DeviceOrientationEvent.requestPermission() resolves */
 export function notifyGyroPermission(result: "granted" | "denied") {
   sharedGyroPermission = result;
@@ -29,10 +25,37 @@ export function useTilt({ maxDeg = 15, perspective = 600 }: UseTiltOptions = {})
   const [tilt, setTilt] = useState<TiltState>({ x: 0, y: 0 });
   const [isMobile, setIsMobile] = useState(false);
   const [gyroPermission, setGyroPermission] = useState(sharedGyroPermission);
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Per-instance baseline — reset when element leaves viewport
+  const baselineRef = useRef<{ beta: number; gamma: number } | null>(null);
 
   // Detect mobile
   useEffect(() => {
     setIsMobile("ontouchstart" in window || navigator.maxTouchPoints > 0);
+  }, []);
+
+  // Track visibility with IntersectionObserver
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        } else {
+          setIsVisible(false);
+          // Reset tilt and baseline when scrolled out of view
+          baselineRef.current = null;
+          setTilt({ x: 0, y: 0 });
+        }
+      },
+      { threshold: 0 },
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
   }, []);
 
   // Listen for shared permission changes from the banner (or any caller)
@@ -56,19 +79,21 @@ export function useTilt({ maxDeg = 15, perspective = 600 }: UseTiltOptions = {})
     if (!isMobile || gyroPermission !== "granted") return;
 
     const handleOrientation = (e: DeviceOrientationEvent) => {
-      const beta = e.beta ?? 0;   // front-back tilt (-180 to 180)
-      const gamma = e.gamma ?? 0; // left-right tilt (-90 to 90)
+      // Only update tilt when element is on screen
+      if (!isVisible) return;
 
-      // Capture baseline from the user's natural holding position
-      if (baselineBeta === null || baselineGamma === null) {
-        baselineBeta = beta;
-        baselineGamma = gamma;
+      const beta = e.beta ?? 0;
+      const gamma = e.gamma ?? 0;
+
+      // Capture baseline from the user's current holding position
+      if (!baselineRef.current) {
+        baselineRef.current = { beta, gamma };
         return;
       }
 
       // Tilt = deviation from baseline
-      const deltaBeta = beta - baselineBeta;
-      const deltaGamma = gamma - baselineGamma;
+      const deltaBeta = beta - baselineRef.current.beta;
+      const deltaGamma = gamma - baselineRef.current.gamma;
 
       const normalizedX = Math.max(-maxDeg, Math.min(maxDeg, deltaBeta * 0.8));
       const normalizedY = Math.max(-maxDeg, Math.min(maxDeg, deltaGamma * 0.8));
@@ -78,7 +103,7 @@ export function useTilt({ maxDeg = 15, perspective = 600 }: UseTiltOptions = {})
 
     window.addEventListener("deviceorientation", handleOrientation);
     return () => window.removeEventListener("deviceorientation", handleOrientation);
-  }, [isMobile, gyroPermission, maxDeg]);
+  }, [isMobile, gyroPermission, maxDeg, isVisible]);
 
   // Auto-grant on Android (no prompt needed), iOS needs user gesture via banner
   useEffect(() => {
