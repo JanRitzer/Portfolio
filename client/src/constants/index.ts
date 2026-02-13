@@ -2,6 +2,7 @@ import noWasteIcon from "@assets/Icon-1024_(1)_1765468583786.png";
 import noTimeIcon from "@assets/DALL·E_2024-12-25_00.31.37_-_A_modern_app_icon_for_a_student_e_1765468583786.png";
 import akitaDetectorIcon from "@assets/generated_images/akita_dog_detection_app_ui.png";
 import projectTrackerIcon from "@assets/generated_images/project_tracker_kanban_dashboard.png";
+import portfolioThumbnail from "@assets/portfolio-thumbnail.svg";
 import elunicLogo from "@assets/elunic-logo.jpg";
 import dataAnnotationLogo from "@assets/dataannotation-logo.svg";
 import limbachLogo from "@assets/limbach-logo.svg";
@@ -57,6 +58,15 @@ export const projects: Project[] = [
     techStack: ["React", "TypeScript", "Tailwind CSS", "Drag & Drop", "Vercel"],
     githubUrl: "https://github.com/JanRitzer/ProjectTracker",
     liveUrl: "https://project-tracker-gamma-three.vercel.app",
+  },
+  {
+    id: "5",
+    title: "Portfolio",
+    description: "My personal developer portfolio featuring a modern dark UI with 3D tilt effects, gyroscope-based mobile interactions, bilingual support (EN/DE), and smooth scroll animations. Built as a single-page app deployed on Vercel with a serverless contact form powered by Resend.",
+    thumbnail: portfolioThumbnail,
+    techStack: ["React", "TypeScript", "Tailwind CSS", "Framer Motion", "Vercel"],
+    githubUrl: "https://github.com/JanRitzer/Portfolio",
+    liveUrl: "https://janritzer.dev",
   },
 ];
 

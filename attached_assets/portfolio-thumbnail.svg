@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0f0f23"/>
+      <stop offset="100%" stop-color="#1a1a3e"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+    <linearGradient id="accent2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#a855f7"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="512" height="512" rx="80" fill="url(#bg)"/>
+  <!-- Glow -->
+  <circle cx="256" cy="240" r="140" fill="#6366f1" opacity="0.08"/>
+  <!-- Browser frame -->
+  <rect x="80" y="100" width="352" height="260" rx="12" fill="#1e1e3f" stroke="#6366f1" stroke-width="2" opacity="0.8"/>
+  <!-- Title bar -->
+  <rect x="80" y="100" width="352" height="32" rx="12" fill="#252550"/>
+  <rect x="80" y="120" width="352" height="12" fill="#252550"/>
+  <circle cx="102" cy="116" r="5" fill="#ef4444" opacity="0.8"/>
+  <circle cx="118" cy="116" r="5" fill="#eab308" opacity="0.8"/>
+  <circle cx="134" cy="116" r="5" fill="#22c55e" opacity="0.8"/>
+  <!-- URL bar -->
+  <rect x="160" y="108" width="200" height="16" rx="4" fill="#1a1a3e"/>
+  <text x="200" y="120" font-family="monospace" font-size="9" fill="#6366f1" opacity="0.7">janritzer.dev</text>
+  <!-- Hero text lines -->
+  <rect x="110" y="155" width="80" height="8" rx="3" fill="url(#accent)" opacity="0.9"/>
+  <rect x="110" y="172" width="160" height="12" rx="3" fill="#ffffff" opacity="0.9"/>
+  <rect x="110" y="192" width="120" height="6" rx="3" fill="#ffffff" opacity="0.3"/>
+  <rect x="110" y="204" width="140" height="6" rx="3" fill="#ffffff" opacity="0.2"/>
+  <!-- Profile circle -->
+  <circle cx="360" cy="185" r="35" fill="url(#accent)" opacity="0.3"/>
+  <circle cx="360" cy="185" r="32" fill="#252550"/>
+  <circle cx="360" cy="178" r="10" fill="#6366f1" opacity="0.6"/>
+  <path d="M340 202 a24 16 0 0 1 40 0" fill="#6366f1" opacity="0.4"/>
+  <!-- Project cards -->
+  <rect x="110" y="230" width="90" height="65" rx="6" fill="#252550" stroke="#6366f1" stroke-width="1" opacity="0.6"/>
+  <rect x="118" y="238" width="74" height="30" rx="3" fill="#6366f1" opacity="0.15"/>
+  <rect x="118" y="274" width="50" height="5" rx="2" fill="#ffffff" opacity="0.4"/>
+  <rect x="118" y="283" width="35" height="4" rx="2" fill="#ffffff" opacity="0.2"/>
+  <rect x="211" y="230" width="90" height="65" rx="6" fill="#252550" stroke="#a855f7" stroke-width="1" opacity="0.6"/>
+  <rect x="219" y="238" width="74" height="30" rx="3" fill="#a855f7" opacity="0.15"/>
+  <rect x="219" y="274" width="50" height="5" rx="2" fill="#ffffff" opacity="0.4"/>
+  <rect x="219" y="283" width="35" height="4" rx="2" fill="#ffffff" opacity="0.2"/>
+  <rect x="312" y="230" width="90" height="65" rx="6" fill="#252550" stroke="#6366f1" stroke-width="1" opacity="0.6"/>
+  <rect x="320" y="238" width="74" height="30" rx="3" fill="#6366f1" opacity="0.15"/>
+  <rect x="320" y="274" width="50" height="5" rx="2" fill="#ffffff" opacity="0.4"/>
+  <rect x="320" y="283" width="35" height="4" rx="2" fill="#ffffff" opacity="0.2"/>
+  <!-- Tech badges -->
+  <rect x="110" y="310" width="40" height="14" rx="7" fill="#6366f1" opacity="0.2"/>
+  <rect x="156" y="310" width="50" height="14" rx="7" fill="#a855f7" opacity="0.2"/>
+  <rect x="212" y="310" width="35" height="14" rx="7" fill="#6366f1" opacity="0.2"/>
+  <rect x="253" y="310" width="45" height="14" rx="7" fill="#a855f7" opacity="0.2"/>
+  <!-- Code brackets -->
+  <text x="130" y="420" font-family="monospace" font-size="48" font-weight="bold" fill="url(#accent)">&lt;/&gt;</text>
+  <text x="260" y="420" font-family="monospace" font-size="14" fill="#ffffff" opacity="0.6">Portfolio</text>
+  <text x="260" y="438" font-family="monospace" font-size="10" fill="#a855f7" opacity="0.5">janritzer.dev</text>
+</svg>
