@@ -97,16 +97,16 @@ function ExperienceCard({ experience, index }: { experience: ExperienceType; ind
       
       <div className="relative z-10">
         {experience.logo ? (
-          <div className="w-10 h-10 rounded-full bg-background border-2 border-primary/50 flex items-center justify-center overflow-hidden shadow-lg shadow-primary/10">
+          <div className="w-14 h-14 rounded-full bg-background border-2 border-primary/50 flex items-center justify-center overflow-hidden shadow-lg shadow-primary/10">
             <img
               src={experience.logo}
               alt={`${experience.company} logo`}
-              className="w-6 h-6 object-contain"
+              className="w-9 h-9 object-contain"
             />
           </div>
         ) : (
-          <div className="w-10 h-10 rounded-full bg-background border-2 border-primary/50 flex items-center justify-center shadow-lg shadow-primary/10">
-            <Briefcase className="w-4 h-4 text-primary" />
+          <div className="w-14 h-14 rounded-full bg-background border-2 border-primary/50 flex items-center justify-center shadow-lg shadow-primary/10">
+            <Briefcase className="w-6 h-6 text-primary" />
           </div>
         )}
       </div>
@@ -209,7 +209,7 @@ export function Experience() {
         </motion.div>
 
         <div className="relative">
-          <div className="absolute left-[19px] md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-accent to-primary/20" />
+          <div className="absolute left-[27px] md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-accent to-primary/20" />
           
           <div className="space-y-8">
             {experiences.map((experience, index) => (
