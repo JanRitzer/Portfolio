@@ -141,7 +141,7 @@ export interface Experience {
 export const experiences: Experience[] = [
   {
     id: "4",
-    title: "Software Engineer: Computer Vision Prototyping",
+    title: "Software Engineer Computer Vision Prototyping",
     company: "elunic AG (AI.SEE)",
     location: "Munich",
     startDate: "2026-02",
