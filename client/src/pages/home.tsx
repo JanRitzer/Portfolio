@@ -10,6 +10,7 @@ import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { Smartphone } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { notifyGyroPermission } from "@/hooks/use-tilt";
 
 function GyroPermissionBanner() {
   const [needsPermission, setNeedsPermission] = useState(false);
@@ -29,12 +30,13 @@ function GyroPermissionBanner() {
 
   const handleRequest = async () => {
     const DeviceOrientationEvt = DeviceOrientationEvent as unknown as {
-      requestPermission: () => Promise<string>;
+      requestPermission: () => Promise<"granted" | "denied">;
     };
     try {
-      await DeviceOrientationEvt.requestPermission();
+      const result = await DeviceOrientationEvt.requestPermission();
+      notifyGyroPermission(result);
     } catch {
-      // user denied
+      notifyGyroPermission("denied");
     }
     setDismissed(true);
   };

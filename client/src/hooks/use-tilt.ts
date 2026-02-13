@@ -10,16 +10,42 @@ interface UseTiltOptions {
   perspective?: number;
 }
 
+// Shared module-level permission state so all hook instances stay in sync
+let sharedGyroPermission: "granted" | "denied" | "prompt" = "prompt";
+const GYRO_EVENT = "gyro-permission-changed";
+
+/** Call this after DeviceOrientationEvent.requestPermission() resolves */
+export function notifyGyroPermission(result: "granted" | "denied") {
+  sharedGyroPermission = result;
+  window.dispatchEvent(new CustomEvent(GYRO_EVENT, { detail: result }));
+}
+
 export function useTilt({ maxDeg = 15, perspective = 600 }: UseTiltOptions = {}) {
   const ref = useRef<HTMLDivElement>(null);
   const [tilt, setTilt] = useState<TiltState>({ x: 0, y: 0 });
   const [isMobile, setIsMobile] = useState(false);
-  const [gyroPermission, setGyroPermission] = useState<"granted" | "denied" | "prompt">("prompt");
+  const [gyroPermission, setGyroPermission] = useState(sharedGyroPermission);
 
   // Detect mobile
   useEffect(() => {
     setIsMobile("ontouchstart" in window || navigator.maxTouchPoints > 0);
   }, []);
+
+  // Listen for shared permission changes from the banner (or any caller)
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const result = (e as CustomEvent).detail as "granted" | "denied";
+      setGyroPermission(result);
+    };
+    window.addEventListener(GYRO_EVENT, handler);
+
+    // Sync in case permission was already granted before this hook mounted
+    if (sharedGyroPermission !== gyroPermission) {
+      setGyroPermission(sharedGyroPermission);
+    }
+
+    return () => window.removeEventListener(GYRO_EVENT, handler);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Gyroscope orientation handler
   useEffect(() => {
@@ -40,26 +66,7 @@ export function useTilt({ maxDeg = 15, perspective = 600 }: UseTiltOptions = {})
     return () => window.removeEventListener("deviceorientation", handleOrientation);
   }, [isMobile, gyroPermission, maxDeg]);
 
-  // Request gyroscope permission (iOS requires explicit permission)
-  const requestGyroPermission = useCallback(async () => {
-    const DeviceOrientationEvt = DeviceOrientationEvent as unknown as {
-      requestPermission?: () => Promise<"granted" | "denied">;
-    };
-
-    if (typeof DeviceOrientationEvt.requestPermission === "function") {
-      try {
-        const result = await DeviceOrientationEvt.requestPermission();
-        setGyroPermission(result);
-      } catch {
-        setGyroPermission("denied");
-      }
-    } else {
-      // Android or desktop — no permission needed
-      setGyroPermission("granted");
-    }
-  }, []);
-
-  // Auto-request on Android (no prompt needed), iOS needs user gesture
+  // Auto-grant on Android (no prompt needed), iOS needs user gesture via banner
   useEffect(() => {
     if (!isMobile) return;
 
@@ -69,7 +76,7 @@ export function useTilt({ maxDeg = 15, perspective = 600 }: UseTiltOptions = {})
 
     if (typeof DeviceOrientationEvt.requestPermission !== "function") {
       // Android — permission not required
-      setGyroPermission("granted");
+      notifyGyroPermission("granted");
     }
   }, [isMobile]);
 
@@ -108,6 +115,5 @@ export function useTilt({ maxDeg = 15, perspective = 600 }: UseTiltOptions = {})
     handleMouseLeave,
     isMobile,
     gyroPermission,
-    requestGyroPermission,
   };
 }
