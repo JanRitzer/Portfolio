@@ -2,6 +2,9 @@ import noWasteIcon from "@assets/Icon-1024_(1)_1765468583786.png";
 import noTimeIcon from "@assets/DALL·E_2024-12-25_00.31.37_-_A_modern_app_icon_for_a_student_e_1765468583786.png";
 import akitaDetectorIcon from "@assets/generated_images/akita_dog_detection_app_ui.png";
 import projectTrackerIcon from "@assets/generated_images/project_tracker_kanban_dashboard.png";
+import elunicLogo from "@assets/elunic-logo.jpg";
+import dataAnnotationLogo from "@assets/dataannotation-logo.svg";
+import limbachLogo from "@assets/limbach-logo.svg";
 
 export interface Project {
   id: string;
@@ -132,6 +135,7 @@ export interface Experience {
   endDate: string | null;
   description: string[];
   techStack: string[];
+  logo?: string;
 }
 
 export const experiences: Experience[] = [
@@ -148,6 +152,7 @@ export const experiences: Experience[] = [
       "Collaborating with cross-functional teams to integrate CV solutions into production environments",
     ],
     techStack: ["Python", "PyTorch", "OpenCV", "Computer Vision", "Deep Learning"],
+    logo: elunicLogo,
   },
   {
     id: "1",
@@ -162,6 +167,7 @@ export const experiences: Experience[] = [
       "Contributing to cutting-edge AI research and implementation",
     ],
     techStack: ["Python", "OpenAI", "LLMs", "Machine Learning"],
+    logo: dataAnnotationLogo,
   },
   {
     id: "2",
@@ -190,6 +196,7 @@ export const experiences: Experience[] = [
       "Contributed to AI management and platform innovation initiatives",
     ],
     techStack: ["Python", "AI/ML", "Data Processing", "LIS Integration"],
+    logo: limbachLogo,
   },
 ];
 
