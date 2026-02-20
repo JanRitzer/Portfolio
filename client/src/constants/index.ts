@@ -1,9 +1,9 @@
-import noWasteIcon from "@assets/Icon-1024_(1)_1765468583786.png";
-import noTimeIcon from "@assets/DALL·E_2024-12-25_00.31.37_-_A_modern_app_icon_for_a_student_e_1765468583786.png";
-import akitaDetectorIcon from "@assets/generated_images/akita_dog_detection_app_ui.png";
-import projectTrackerIcon from "@assets/generated_images/project_tracker_kanban_dashboard.png";
+import noWasteIcon from "@assets/Icon-1024_(1)_1765468583786.webp";
+import noTimeIcon from "@assets/DALL·E_2024-12-25_00.31.37_-_A_modern_app_icon_for_a_student_e_1765468583786.webp";
+import akitaDetectorIcon from "@assets/generated_images/akita_dog_detection_app_ui.webp";
+import projectTrackerIcon from "@assets/generated_images/project_tracker_kanban_dashboard.webp";
 import portfolioThumbnail from "@assets/portfolio-thumbnail.svg";
-import elunicLogo from "@assets/elunic-logo.jpg";
+import elunicLogo from "@assets/elunic-logo.webp";
 import dataAnnotationLogo from "@assets/dataannotation-logo.svg";
 import limbachLogo from "@assets/limbach-logo.svg";
 

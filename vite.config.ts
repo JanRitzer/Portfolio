@@ -15,5 +15,21 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist"),
     emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'framer-motion': ['framer-motion'],
+          'vendor': [
+            'react',
+            'react-dom',
+            'wouter',
+            '@radix-ui/react-slot',
+            '@radix-ui/react-toast',
+            '@radix-ui/react-tooltip',
+            '@radix-ui/react-label',
+          ],
+        },
+      },
+    },
   },
 });

@@ -3,10 +3,10 @@ import { Code2, Palette, Zap, Users } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { useLanguage } from "@/hooks/use-language";
 import { useTilt } from "@/hooks/use-tilt";
-import profileImage from "@assets/IMG_4617_1765566574844.jpg";
+import profileImage from "@assets/IMG_4617_1765566574844.webp";
 import tumLogo from "@assets/tum-logo.svg";
 
-export function About() {
+export default function About() {
   const { t } = useLanguage();
   const { ref, style, handleMouseMove, handleMouseLeave } = useTilt();
 

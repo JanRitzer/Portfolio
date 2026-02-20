@@ -159,7 +159,7 @@ function ExperienceCard({ experience, index }: { experience: ExperienceType; ind
   );
 }
 
-export function Experience() {
+export default function Experience() {
   const { t } = useLanguage();
 
   return (

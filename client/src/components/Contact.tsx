@@ -14,7 +14,7 @@ import { insertContactMessageSchema, type InsertContactMessage } from "@shared/s
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useLanguage } from "@/hooks/use-language";
 
-export function Contact() {
+export default function Contact() {
   const { toast } = useToast();
   const { t } = useLanguage();
   const [isSubmitted, setIsSubmitted] = useState(false);

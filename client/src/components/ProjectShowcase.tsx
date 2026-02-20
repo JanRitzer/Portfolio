@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Search, X } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
 
-export function ProjectShowcase() {
+export default function ProjectShowcase() {
   const { t, language } = useLanguage();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTechs, setSelectedTechs] = useState<string[]>([]);

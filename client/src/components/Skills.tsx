@@ -62,7 +62,7 @@ function SkillItem({ skill, index }: { skill: Skill; index: number }) {
   );
 }
 
-export function Skills() {
+export default function Skills() {
   const { t } = useLanguage();
   const [activeCategory, setActiveCategory] = useState<CategoryId>("all");
 

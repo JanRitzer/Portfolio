@@ -1,16 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { TechStackMarquee } from "@/components/TechStackMarquee";
-import { ProjectShowcase } from "@/components/ProjectShowcase";
-import { Skills } from "@/components/Skills";
-import { Experience } from "@/components/Experience";
-import { About } from "@/components/About";
-import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { Smartphone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { notifyGyroPermission } from "@/hooks/use-tilt";
+
+const ProjectShowcase = lazy(() => import("@/components/ProjectShowcase"));
+const Skills = lazy(() => import("@/components/Skills"));
+const Experience = lazy(() => import("@/components/Experience"));
+const About = lazy(() => import("@/components/About"));
+const Contact = lazy(() => import("@/components/Contact"));
 
 function GyroPermissionBanner() {
   const [needsPermission, setNeedsPermission] = useState(false);
@@ -65,11 +66,13 @@ export default function Home() {
       <main>
         <Hero />
         <TechStackMarquee />
-        <ProjectShowcase />
-        <Skills />
-        <Experience />
-        <About />
-        <Contact />
+        <Suspense fallback={null}>
+          <ProjectShowcase />
+          <Skills />
+          <Experience />
+          <About />
+          <Contact />
+        </Suspense>
       </main>
 
       <Footer />
