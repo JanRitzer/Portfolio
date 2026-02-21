@@ -97,7 +97,7 @@ export const aboutContent = {
     "In my free time, I love playing padel tennis 🎾, going to the gym 💪, or having a ride with my road bike 🚴.",
   ],
   stats: [
-    { label: "Years Experience", value: "4+" },
+    { label: "Years Experience", value: "5+" },
     { label: "Projects Completed", value: "20+" },
     { label: "Technologies", value: "15+" },
   ],
