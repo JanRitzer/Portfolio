@@ -106,7 +106,7 @@ export const aboutContent = {
 export const heroContent = {
   greeting: "Hi, I'm",
   name: "Jan",
-  title: "Software Developer",
+  title: "Software Engineer",
   subtitle: "& Mobile Engineer",
   description: "I build exceptional digital experiences that combine cutting-edge technology with intuitive design. Specializing in iOS apps, web platforms, and AI-powered solutions.",
 };
@@ -181,7 +181,7 @@ export const experiences: Experience[] = [
   },
   {
     id: "2",
-    title: "Software Developer",
+    title: "Software Engineer",
     company: "Self-employed",
     location: "Munich",
     startDate: "2021-05",

@@ -112,7 +112,7 @@ export default function About() {
                       />
                     </div>
                     <h3 className="text-xl font-bold mb-2" data-testid="text-profile-name">Jan Ritzer</h3>
-                    <p className="text-muted-foreground text-sm mb-4" data-testid="text-profile-role">Software Developer</p>
+                    <p className="text-muted-foreground text-sm mb-4" data-testid="text-profile-role">Software Engineer</p>
                     <img 
                       src={tumLogo} 
                       alt="Technical University of Munich" 
