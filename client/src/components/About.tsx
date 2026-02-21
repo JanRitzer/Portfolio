@@ -18,7 +18,7 @@ export default function About() {
   ];
 
   const stats = [
-    { value: "4+", label: t("about.yearsExp") },
+    { value: "5+", label: t("about.yearsExp") },
     { value: "20+", label: t("about.projectsCompleted") },
     { value: "15+", label: t("about.technologies") },
   ];
