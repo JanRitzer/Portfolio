@@ -94,7 +94,7 @@ export const aboutContent = {
     "I'm Jan – a developer passionate about cutting-edge technology, currently studying Information Systems at the Technical University of Munich. In a rapidly evolving tech landscape, I explore and integrate the latest AI models and automation tools to build software that feels intelligent and intuitive.",
     "I'm passionate about AI-Augmented Development, using cutting-edge tools like Cursor, Claude Code, and other AI-powered development environments to build software smarter and faster. My goal is to simplify complex problems through intelligent, AI-driven solutions – bridging the gap between advanced backend logic and intuitive user experiences.",
     "",
-    "In my free time, I love playing padel tennis 🎾, going to the gym 💪, or having a ride with my road bike 🚴.",
+    "In my free time, I love playing padel tennis 🎾 going to the gym 💪 or having a ride with my road bike 🚴.",
   ],
   stats: [
     { label: "Years Experience", value: "5+" },
