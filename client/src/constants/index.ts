@@ -106,8 +106,8 @@ export const aboutContent = {
 export const heroContent = {
   greeting: "Hi, I'm",
   name: "Jan",
-  title: "Software Engineer",
-  subtitle: "& Mobile Engineer",
+  title: "Full Stack",
+  subtitle: "Software Engineer",
   description: "I build exceptional digital experiences that combine cutting-edge technology with intuitive design. Specializing in iOS apps, web platforms, and AI-powered solutions.",
 };
 

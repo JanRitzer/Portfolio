@@ -24,8 +24,8 @@ const translations: Record<Language, Record<string, string>> = {
     "hero.available": "Available for freelance work",
     "hero.greeting": "Hi, I'm",
     "hero.name": "Jan",
-    "hero.title": "Software Engineer",
-    "hero.subtitle": "& Mobile Engineer",
+    "hero.title": "Full Stack",
+    "hero.subtitle": "Software Engineer",
     "hero.description": "I build exceptional digital experiences that combine cutting-edge technology with intuitive design. Specializing in web platforms, iOS apps, and AI-powered solutions.",
     "hero.viewWork": "View Work",
 
@@ -146,8 +146,8 @@ const translations: Record<Language, Record<string, string>> = {
     "hero.available": "Verfügbar für Freelance-Projekte",
     "hero.greeting": "Hi, ich bin",
     "hero.name": "Jan",
-    "hero.title": "Software Engineer",
-    "hero.subtitle": "& Mobile Engineer",
+    "hero.title": "Full Stack",
+    "hero.subtitle": "Software Engineer",
     "hero.description": "Ich entwickle außergewöhnliche digitale Erlebnisse, die modernste Technologie mit intuitivem Design verbindet. Spezialisiert auf Web-Plattformen, iOS Apps und KI-gestützte Lösungen.",
     "hero.viewWork": "Projekte ansehen",
 
