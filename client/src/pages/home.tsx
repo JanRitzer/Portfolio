@@ -3,6 +3,8 @@ import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { TechStackMarquee } from "@/components/TechStackMarquee";
 import { Footer } from "@/components/Footer";
+import { ParticleField } from "@/components/ParticleField";
+import { useMousePosition } from "@/hooks/use-mouse-position";
 import { Smartphone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { notifyGyroPermission } from "@/hooks/use-tilt";
@@ -59,8 +61,14 @@ function GyroPermissionBanner() {
 }
 
 export default function Home() {
+  const mousePosition = useMousePosition();
+  const prefersReducedMotion =
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+      {!prefersReducedMotion && <ParticleField mousePosition={mousePosition} />}
       <Navbar />
 
       <main>

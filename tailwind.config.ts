@@ -110,6 +110,10 @@ export default {
           "0%, 100%": { opacity: "1" },
           "50%": { opacity: "0.5" },
         },
+        "cursor-blink": {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -117,6 +121,7 @@ export default {
         "marquee": "marquee 30s linear infinite",
         "fade-in-up": "fade-in-up 0.6s ease-out forwards",
         "glow": "glow 2s ease-in-out infinite",
+        "cursor-blink": "cursor-blink 1.06s ease-in-out infinite",
       },
     },
   },

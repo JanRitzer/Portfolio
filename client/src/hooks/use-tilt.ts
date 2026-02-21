@@ -11,8 +11,8 @@ interface UseTiltOptions {
 }
 
 // Shared module-level permission state so all hook instances stay in sync
-let sharedGyroPermission: "granted" | "denied" | "prompt" = "prompt";
-const GYRO_EVENT = "gyro-permission-changed";
+export let sharedGyroPermission: "granted" | "denied" | "prompt" = "prompt";
+export const GYRO_EVENT = "gyro-permission-changed";
 
 /** Call this after DeviceOrientationEvent.requestPermission() resolves */
 export function notifyGyroPermission(result: "granted" | "denied") {
