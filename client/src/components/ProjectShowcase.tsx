@@ -24,8 +24,16 @@ export default function ProjectShowcase() {
         description = t("projects.dogDetection.description");
       } else if (project.id === "4") {
         description = t("projects.projectTracker.description");
+      } else if (project.id === "5") {
+        description = t("projects.portfolio.description");
       }
-      return { ...project, description };
+      let title = project.title;
+      if (project.id === "3") {
+        title = t("projects.dogDetection.title");
+      } else if (project.id === "5") {
+        title = t("projects.portfolio.title");
+      }
+      return { ...project, title, description };
     });
   }, [language, t]);
 

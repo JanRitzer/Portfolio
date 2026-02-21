@@ -17,7 +17,13 @@ function ExperienceCard({ experience, index }: { experience: ExperienceType; ind
   };
 
   const getTranslatedDescription = () => {
-    if (experience.company === "DataAnnotation") {
+    if (experience.company === "elunic AG (AI.SEE)") {
+      return [
+        t("experience.elunic.desc1"),
+        t("experience.elunic.desc2"),
+        t("experience.elunic.desc3"),
+      ];
+    } else if (experience.company === "DataAnnotation") {
       return [
         t("experience.dataAnnotation.desc1"),
         t("experience.dataAnnotation.desc2"),
@@ -40,7 +46,9 @@ function ExperienceCard({ experience, index }: { experience: ExperienceType; ind
   };
 
   const getTranslatedTitle = () => {
-    if (experience.company === "DataAnnotation") {
+    if (experience.company === "elunic AG (AI.SEE)") {
+      return t("experience.elunic.title");
+    } else if (experience.company === "DataAnnotation") {
       return t("experience.dataAnnotation.title");
     } else if (experience.company === "Self-employed") {
       return t("experience.selfEmployed.title");
@@ -58,7 +66,9 @@ function ExperienceCard({ experience, index }: { experience: ExperienceType; ind
   };
 
   const getTranslatedLocation = () => {
-    if (experience.location === "Munich, Germany" && language === "de") {
+    if (experience.location === "Munich" && language === "de") {
+      return "München";
+    } else if (experience.location === "Munich, Germany" && language === "de") {
       return "München, Deutschland";
     }
     if (experience.location === "Hybrid" && language === "de") {
