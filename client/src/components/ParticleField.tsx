@@ -98,23 +98,21 @@ export const ParticleField = memo(function ParticleField({
 
       ctx.clearRect(0, 0, w, h);
       const particles = particlesRef.current;
-      const mouse = mouseRef.current;
-
-      // Use raw clientX/clientY for mouse attraction (canvas is fixed to viewport)
-      const mx = mouse.clientX;
-      const my = mouse.clientY;
 
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
 
-        // Mouse attraction
-        const dx = mx - p.x;
-        const dy = my - p.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < MOUSE_ATTRACT_RADIUS && dist > 0) {
-          const force = (1 - dist / MOUSE_ATTRACT_RADIUS) * 0.02;
-          p.vx += dx * force;
-          p.vy += dy * force;
+        // Mouse attraction (desktop only)
+        if (!isMobile) {
+          const mouse = mouseRef.current;
+          const dx = mouse.clientX - p.x;
+          const dy = mouse.clientY - p.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < MOUSE_ATTRACT_RADIUS && dist > 0) {
+            const force = (1 - dist / MOUSE_ATTRACT_RADIUS) * 0.02;
+            p.vx += dx * force;
+            p.vy += dy * force;
+          }
         }
 
         // Apply velocity with damping
@@ -135,20 +133,22 @@ export const ParticleField = memo(function ParticleField({
         ctx.fillStyle = p.color;
         ctx.fill();
 
-        // Connection lines
-        for (let j = i + 1; j < particles.length; j++) {
-          const q = particles[j];
-          const cdx = p.x - q.x;
-          const cdy = p.y - q.y;
-          const distSq = cdx * cdx + cdy * cdy;
-          if (distSq < connectDistSq) {
-            const alpha = 0.15 * (1 - distSq / connectDistSq);
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(q.x, q.y);
-            ctx.strokeStyle = LINE_COLOR.replace("0.15", alpha.toFixed(3));
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
+        // Connection lines (desktop only)
+        if (!isMobile) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const q = particles[j];
+            const cdx = p.x - q.x;
+            const cdy = p.y - q.y;
+            const distSq = cdx * cdx + cdy * cdy;
+            if (distSq < connectDistSq) {
+              const alpha = 0.15 * (1 - distSq / connectDistSq);
+              ctx.beginPath();
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(q.x, q.y);
+              ctx.strokeStyle = LINE_COLOR.replace("0.15", alpha.toFixed(3));
+              ctx.lineWidth = 0.5;
+              ctx.stroke();
+            }
           }
         }
       }
